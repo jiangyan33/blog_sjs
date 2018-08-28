@@ -1,0 +1,35 @@
+{
+    "APP": {
+        "name": "bookonline server",
+        "Allow_Origin": "*"
+    },
+    "MONGODBS": {
+        "blog_sjs": "mongodb://localhost:27017/blog_sjs"
+    },
+    "LOGGING": {
+        "appenders": [
+            {
+                "type": "console"
+            },
+            {
+                "type": "dateFile",
+                "filename": "./log/log",
+                "pattern": "-yyyy-MM-dd.log",
+                "alwaysIncludePattern": true,
+                "category": "info"
+            },
+            {
+                "type": "dateFile",
+                "filename": "./log/error",
+                "pattern": "-yyyy-MM-dd.log",
+                "alwaysIncludePattern": true,
+                "category": "error"
+            }
+        ],
+        "levels": {
+            "info": "INFO",
+            "error": "ERROR"
+        },
+        "replaceConsole": true
+    }
+}

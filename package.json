@@ -1,0 +1,24 @@
+{
+  "name": "blog-sjs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "NODE_ENV=development NODE_PORT=8833 node ./bin/www",
+    "dev": "NODE_ENV=development NODE_PORT=8833 node ./bin/www"
+  },
+  "dependencies": {
+    "bootstrap-select": "^1.13.2",
+    "config": "^1.29.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "lodash": "^4.17.10",
+    "log4js": "^1.1.1",
+    "mongodb": "^2.2.27",
+    "morgan": "~1.9.0",
+    "thenjs": "^2.0.6",
+    "ueditor": "^1.2.3"
+  }
+}

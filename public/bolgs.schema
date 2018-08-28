@@ -1,0 +1,32 @@
+//博客的schema
+//分类信息
+type: {
+    _id: int,
+    name: String,
+    count: int, //  该分类下的文章数量
+    status: boolean,
+    ctime: date,
+    utime: date
+}
+//文章内容
+article: {
+    _id: int,
+    name: String,
+    content: String,//文章内容，富文本
+    pic: String,    //标题图片
+    type_id: String, //分类编号
+    read_num: int,  //阅读量
+    status: boolean,
+    ctime: date,
+    utime: date
+}
+//评论信息
+comment: {
+    _id: int,
+    parent_id:int,//父级目录编号，最顶级为0
+    name: String,
+    nick_name: String,
+    article_id: int,//文章编号
+    ctime: date,
+    utime: date
+}
