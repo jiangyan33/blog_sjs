@@ -10,7 +10,7 @@ const ueditor = require('ueditor');
 const path = require('path');
 const ResponseWrapper = require('./middlewares/response_wrapper');
 var app = express();
-
+const rediser = require('./modules/utils/rediser');
 thenjs(function (cont) {
   // 初始化基础资源数据库
   var mongodbs = config.get('MONGODBS');
@@ -20,6 +20,16 @@ thenjs(function (cont) {
       process.exit(-1);
     }
     logger.info('mongodb init success');
+    cont(null, null);
+  });
+}).then(function (cont, err) {
+  // 连接redis
+  var redis_conf = config.get('REDIS');
+  rediser.init(redis_conf, function (err) {
+    if (err) {
+      logger.error('Connect Cache Error: ' + err);
+      process.exit(-1);
+    }
     cont(null, null);
   });
 }).then(function (cont, err) {
