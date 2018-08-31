@@ -2,7 +2,7 @@
 
 const ResponseWrapper = require('../../middlewares/response_wrapper');
 const logger = require('../../utils/logger');
-
+const token_util = require('../../utils/token');
 /**数据库
  * 
  */
@@ -24,13 +24,16 @@ function login(req, res) {
             logger.error('login:' + reject);
             return responseWrapper.error('HANDLE_ERROR');
         }
-        if(user_data){
+        if (user_data) {
             //登陆成功,返回客户端一个token信息
-            
+            let token = token_util.signToke(user_data);
+            user_data['token'] = token;
+            return responseWrapper.succ(user_data);
+        } else {
+            return responseWrapper.error('AUTH_FAILURE', '用户名或者密码有误');
         }
-        return responseWrapper.succ(resolve);
     });
 }
 module.exports = {
-    findAll
+    login
 }

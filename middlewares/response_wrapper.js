@@ -25,7 +25,7 @@ function ResponseWrapper(res) {
     this.res = res;
 }
 
-ResponseWrapper.prototype.error = function(type, desc, data) {
+ResponseWrapper.prototype.error = function (type, desc, data) {
     this.res.status(200);
     var msg = desc ? desc : RETURN_MSG[type];
     return this.res.json({
@@ -35,8 +35,11 @@ ResponseWrapper.prototype.error = function(type, desc, data) {
     });
 }
 
-ResponseWrapper.prototype.succ = function(data) {
+ResponseWrapper.prototype.succ = function (data) {
     this.res.status(200);
+    if (data['token']) {
+        res.set({ 'Authorization': data.token })
+    }
     return this.res.json({
         Code: RETURN_CODE['OK'],
         Msg: RETURN_MSG['OK'],
@@ -44,7 +47,7 @@ ResponseWrapper.prototype.succ = function(data) {
     });
 }
 
-ResponseWrapper.prototype.send = function(data) {
+ResponseWrapper.prototype.send = function (data) {
     this.res.status(200);
     data.data = data.data || null;
     return this.res.json(data);
